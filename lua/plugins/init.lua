@@ -3,7 +3,7 @@
 local default_plugins = {
 
   "nvim-lua/plenary.nvim",
-
+  
   {
     "NvChad/base46",
     branch = "v2.0",
@@ -39,11 +39,7 @@ local default_plugins = {
 
       -- execute colorizer as soon as possible
       vim.defer_fn(function()
-        require("colorizer").attach_to_buffer(0)
-      end, 0)
-    end,
-  },
-
+        require("colorizer").attach_to_buffer(0) end, 0) end, },
   {
     "nvim-tree/nvim-web-devicons",
     opts = function()
@@ -84,7 +80,18 @@ local default_plugins = {
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup(opts)
+
+
     end,
+  },
+
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    init = function()
+      require('rainbow-delimiters.setup').setup()
+
+
+    end
   },
 
   -- git stuff
