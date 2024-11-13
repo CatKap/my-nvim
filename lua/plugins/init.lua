@@ -280,8 +280,43 @@ local default_plugins = {
   },
 
 
+  -- PHP module 
+  {
+    "praem90/nvim-phpcsf",
+    init = function()
+      require("phpcs").setup({
+      phpcs = "phpcs",
+      phpcbf = "phpcbf",
+      standard = "PSR12"
+      })
+      
+      vim.api.nvim_create_augroup("PHBSCF", { clear = true }) -- What does this do?
+      vim.api.nvim_create_autocmd({"BufWritePost", "BufReadPost", "InsertLeave"}, {
+                pattern = "*.php",
+                command = "lua require'phpcs'.cs()",
+                group = "PHBSCF",
+            })
+      vim.api.nvim_create_autocmd("BufWritePost", {
+                pattern = "*.php",
+                command = "lua require'phpcs'.cbf()",
+                group = "PHBSCF",
+            })
+  
 
+    end
+  },
 
+  {
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { -- Example mapping to toggle outline
+      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
+    opts = {
+      -- Your setup opts here
+    },
+  },
 
 }
 

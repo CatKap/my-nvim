@@ -65,6 +65,7 @@ require'lspconfig'.vuels.setup{
   cmd = { "vls", "--node-ipc"}
 }
 
+require("lspconfig").intelephense.setup{}
 -- Pyright examplee 
 --  settings = {pyright = {autoImportCompletion = true,},
 --     python = {
